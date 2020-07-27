@@ -1,7 +1,7 @@
-from rest_framework.viewsets import ReadOnlyModelViewSet
+from rest_framework.generics import ListAPIView, RetrieveAPIView
 from .models import Article
-from .serializers import ArticleSerializer
-from rest_framework.pagination import PageNumberPagination, LimitOffsetPagination
+from .serializers import ArticleListSerializer, ArticleSerializer
+from rest_framework.pagination import PageNumberPagination
 
 
 class ArticlePagination(PageNumberPagination):
@@ -11,7 +11,11 @@ class ArticlePagination(PageNumberPagination):
     last_page_strings = ('the_end',)
 
 
-class ArticleView(ReadOnlyModelViewSet):
+class ArticleView(ListAPIView):
+    queryset = Article.objects.all()
+    serializer_class = ArticleListSerializer
+    pagination_class = ArticlePagination
+
+class DetailView(RetrieveAPIView):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
-    pagination_class = ArticlePagination

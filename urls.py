@@ -1,8 +1,9 @@
 from rest_framework import routers
-from .views import ArticleView
+from .views import ArticleView, DetailView
+from django.urls import path
 
 
-router = routers.SimpleRouter()
-router.register('articles', ArticleView)
-
-urlpatterns = router.urls
+urlpatterns = [
+    path('articles/', ArticleView.as_view()),
+    path('articles/<int:pk>/', DetailView.as_view()),
+]
