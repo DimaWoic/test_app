@@ -2,8 +2,9 @@ from rest_framework import serializers
 
 
 class ArticleListSerializer(serializers.Serializer):
+    id = serializers.IntegerField()
     title = serializers.CharField()
-    text = serializers.CharField(max_length=700)
+    text = serializers.CharField()
 
 
 class ArticleSerializer(serializers.Serializer):

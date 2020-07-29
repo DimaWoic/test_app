@@ -4,6 +4,7 @@ import logging
 from test_app.models import Article
 
 
+
 class HabroParser:
 
     logging.basicConfig(filename='habroparser.log', filemode='a',

@@ -16,6 +16,7 @@ class ArticleView(ListAPIView):
     serializer_class = ArticleListSerializer
     pagination_class = ArticlePagination
 
+
 class DetailView(RetrieveAPIView):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
