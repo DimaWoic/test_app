@@ -4,14 +4,24 @@ import logging
 from test_app.models import Article
 
 
-
 class HabroParser:
+    """
+    класс HabroParser реализует парсер статей с https://habr.com/ru/,
+    для корректной работы необходимы модули: requests, bs4, logging, и модель Django: Article.
+    Обязательным аргументом для класса является вышеуказанный url.
+    Если аргумент указан не будет, будет вызвано исключение.
+    """
 
     logging.basicConfig(filename='habroparser.log', filemode='a',
                         format='%(filename)s[LINE:%(lineno)d]# '
                                '%(levelname)-8s [%(asctime)s]  %(message)s', level=logging.WARNING)
 
     def __init__(self, url):
+        """
+        Метод класса запрашивает c url html-документ и часть страницы содержащей
+        статьи хабра.
+        """
+
         self.url = url
         try:
             r = requests.get(url)
@@ -27,6 +37,11 @@ class HabroParser:
             logging.error(connerr)
 
     def content_parser(self):
+        """
+        Метод запрашивает пагинацию, формирует список страниц для парсинга, ссылки на статьи
+        сохраняет контент в базу данных
+        """
+
         pagination = self.soup.find('ul', id='nav-pagess')
         num_pages = pagination.find_all('li')
         list_pagination_pages = []
@@ -65,4 +80,3 @@ class HabroParser:
 
         except requests.exceptions.RequestException as connerr:
             logging.error(connerr)
-
