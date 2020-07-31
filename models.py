@@ -22,7 +22,7 @@ class Article(models.Model):
         """
 
         verbose_name = 'статья'
-        verbose_name_plural = 'статей'
+        verbose_name_plural = 'статьи'
         ordering = ['published']
 
     def __str__(self):

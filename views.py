@@ -11,13 +11,13 @@ class ArticlePagination(PageNumberPagination):
                                  page_size_query_param - параметр для передачи в http-запросе о смене количества
                                                          выводимых записей на одной странице
                                  max_page_size - максимально возможное количество записей для одной страницы
-                                 last_page_strings - выводимое сообщение при достижении последней страницы
+                                 last_page_strings - используется для запроса последней страницы
 
     """
 
     page_size = 10
     page_size_query_param = 'page_size'
-    max_page_size = 30
+    max_page_size = 100
     last_page_strings = ('end',)
 
 
