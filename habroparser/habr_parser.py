@@ -10,6 +10,8 @@ class HabroParser:
     для корректной работы необходимы модули: requests, bs4, logging, и модель Django: Article.
     Обязательным аргументом для класса является вышеуказанный url.
     Если аргумент указан не будет, будет вызвано исключение.
+    При отсутствии подключения к интернету будет вызвано исключение AttributeError и будет помещена запись
+    в habroparser.log
     """
 
     logging.basicConfig(filename='habroparser.log', filemode='a',
